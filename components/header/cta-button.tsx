@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from "next/link";
 
 export function CtaButton() {
   return (
@@ -9,5 +9,5 @@ export function CtaButton() {
       <span className="w-[7px] h-[7px] rounded-full bg-emerald-400 shrink-0" />
       Let&apos;s talk
     </Link>
-  )
+  );
 }

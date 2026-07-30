@@ -1,10 +1,10 @@
-'use client'
+"use client";
 
 // Toggles between the day and night background videos.
 // Accepts `isNight` as a prop so the parent owns the state.
 
 interface HeroBackgroundProps {
-  isNight: boolean
+  isNight: boolean;
 }
 
 export function HeroBackground({ isNight }: HeroBackgroundProps) {
@@ -12,22 +12,34 @@ export function HeroBackground({ isNight }: HeroBackgroundProps) {
     <div className="absolute inset-0 z-0">
       {/* Day video */}
       <video
-        autoPlay muted loop playsInline
+        autoPlay
+        muted
+        loop
+        playsInline
         className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
-          isNight ? 'opacity-0 pointer-events-none' : 'opacity-100'
+          isNight ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
       >
-        <source src="/hero-background-video.mp4" type="video/mp4" />
+        <source
+          src="/hero-background-video.mp4"
+          type="video/mp4"
+        />
       </video>
 
       {/* Night video */}
       <video
-        autoPlay muted loop playsInline
+        autoPlay
+        muted
+        loop
+        playsInline
         className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
-          isNight ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          isNight ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
       >
-        <source src="/hero-night-video.mp4" type="video/mp4" />
+        <source
+          src="/hero-night-video.mp4"
+          type="video/mp4"
+        />
       </video>
 
       {/* Overlay 1 — left→right gradient (text readability) */}
@@ -37,11 +49,11 @@ export function HeroBackground({ isNight }: HeroBackgroundProps) {
       <div
         aria-hidden="true"
         style={{
-          position: 'absolute',
-          inset: 0,
           background:
-            'radial-gradient(ellipse 70% 60% at 0% 0%, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.38) 38%, transparent 72%)',
-          pointerEvents: 'none',
+            "radial-gradient(ellipse 70% 60% at 0% 0%, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.38) 38%, transparent 72%)",
+          inset: 0,
+          pointerEvents: "none",
+          position: "absolute",
         }}
       />
 
@@ -49,12 +61,12 @@ export function HeroBackground({ isNight }: HeroBackgroundProps) {
       <div
         aria-hidden="true"
         style={{
-          position: 'absolute',
+          background: "linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 28%)",
           inset: 0,
-          background: 'linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 28%)',
-          pointerEvents: 'none',
+          pointerEvents: "none",
+          position: "absolute",
         }}
       />
     </div>
-  )
+  );
 }

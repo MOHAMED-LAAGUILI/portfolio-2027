@@ -1,5 +1,5 @@
-import { Logo } from '@/components/header/logo'
-import { CtaButton } from '@/components/header/cta-button'
+import { CtaButton } from "@/components/header/cta-button";
+import { Logo } from "@/components/header/logo";
 
 export function Header() {
   return (
@@ -11,5 +11,5 @@ export function Header() {
         </div>
       </div>
     </nav>
-  )
+  );
 }

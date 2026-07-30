@@ -1,28 +1,48 @@
-import Link from 'next/link'
-import { Zap, ArrowUpRight } from 'lucide-react'
+import { Zap } from "lucide-react";
 
-interface ModelRowProps {
-  name: string
-  provider: string
-  tokens: string
-}
+type ModelRowProps = {
+  name: string;
+  provider: string;
+  tokens: string;
+  tier: "premium" | "free";
+};
 
-function ModelRow({ name, provider, tokens }: ModelRowProps) {
+function ModelRow({ name, provider, tokens, tier }: ModelRowProps) {
   return (
-    <div className="flex justify-between items-center">
-      <span className="text-[11px] text-white/60">{name}</span>
+    <div className="flex justify-between items-center gap-2">
+      <div className="flex items-center gap-2 min-w-0">
+        <span className="text-[11px] text-white/60 truncate">{name}</span>
+
+        {/* Tier Badge */}
+        <span
+          className={`text-[9px] px-1.5 py-[1px] rounded-full font-medium
+            ${
+              tier === "premium"
+                ? "bg-amber-400/15 text-amber-300 border border-amber-400/30"
+                : "bg-emerald-400/15 text-emerald-300 border border-emerald-400/30"
+            }`}
+        >
+          {tier === "premium" ? "PRO" : "FREE"}
+        </span>
+      </div>
+
       <span className="text-[11px] text-white/35">{provider}</span>
       <span className="text-[11px] font-medium text-white">{tokens}</span>
     </div>
-  )
+  );
 }
 
 const MODELS: ModelRowProps[] = [
-  { name: 'Opus 4.7',   provider: 'Anthropic', tokens: '8.2M'  },
-  { name: 'Sonnet 4.6', provider: 'Anthropic', tokens: '2.4M'  },
-  { name: 'Haiku 4.5',  provider: 'Anthropic', tokens: '1.1M'  },
-  { name: 'GPT-5',      provider: 'OpenAI',    tokens: '730K'  },
-]
+  // 🔒 Top New Premium
+  { name: "GPT-5.5", provider: "OpenAI", tier: "premium", tokens: "1M" },
+  { name: "Claude Opus 4.7", provider: "Anthropic", tier: "premium", tokens: "8.2M" },
+  { name: "Gemini 2.5 Pro", provider: "Google", tier: "premium", tokens: "2M" },
+
+  // 🆓 Top New Free
+  { name: "GPT-5 Mini", provider: "OpenAI", tier: "free", tokens: "500K" },
+  { name: "Claude Haiku 4.5", provider: "Anthropic", tier: "free", tokens: "1.1M" },
+  { name: "Gemini 2.5 Flash", provider: "Google", tier: "free", tokens: "1M" },
+];
 
 export function HeroTokenCard() {
   return (
@@ -56,23 +76,14 @@ export function HeroTokenCard() {
 
         {/* Model rows */}
         <div className="space-y-2 pt-0.5">
-          {MODELS.map((m) => (
-            <ModelRow key={m.name} {...m} />
+          {MODELS.map(m => (
+            <ModelRow
+              key={m.name}
+              {...m}
+            />
           ))}
-        </div>
-
-        {/* Footer */}
-        <div className="flex justify-between items-center pt-2 border-t border-white/8">
-          <span className="text-[10px] text-white/35">Updated 9h ago</span>
-          <Link
-            href="#"
-            className="text-[11px] text-accent hover:text-accent/80 transition-colors flex items-center gap-1"
-          >
-            See breakdown
-            <ArrowUpRight className="w-2.5 h-2.5" />
-          </Link>
         </div>
       </div>
     </div>
-  )
+  );
 }
