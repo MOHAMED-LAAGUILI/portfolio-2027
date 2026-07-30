@@ -29,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`scroll-smooth ${inter.variable}`}>
+    <html lang="en" className={`scroll-smooth ${inter.variable}`} suppressHydrationWarning >
       <body className="bg-background text-foreground antialiased font-sans">
         <ThemeProvider>
           {children}
