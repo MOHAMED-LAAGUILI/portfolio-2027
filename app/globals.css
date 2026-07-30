@@ -3,33 +3,13 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --color-accent: #ff5722;
-  --color-accent-foreground: #ffffff;
-  --color-background: #fafaf9;
-  --color-border: #e7e5e4;
-  --color-foreground: #1c1917;
-  --color-muted: #d6d3d1;
-  --color-muted-foreground: #78716b;
-}
-
-:root {
-  color-scheme: light;
-  --background: #fafaf9;
-  --foreground: #1c1917;
-}
-
-.dark {
-  color-scheme: dark;
-  --background: #1c1917;
-  --foreground: #fafaf9;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not(.light) {
-    color-scheme: dark;
-    --background: #1c1917;
-    --foreground: #fafaf9;
-  }
+  --color-accent:            #E8531F;
+  --color-background:        #fafaf9;
+  --color-foreground:        #1c1917;
+  --color-border:            #e7e5e4;
+  --color-muted:             #d6d3d1;
+  --font-sans: var(--font-inter), 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'Fira Code', monospace;
 }
 
 @layer base {
@@ -38,15 +18,25 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-sans);
   }
 }
 
 @layer utilities {
   .glass {
-    @apply backdrop-blur-md bg-white/10 border border-white/20;
+    background: rgba(14, 14, 14, 0.72);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    box-shadow:
+      0 20px 60px rgba(0, 0, 0, 0.55),
+      0 1px 0 rgba(255, 255, 255, 0.06) inset;
   }
 
-  .dark .glass {
-    @apply bg-white/5 border-white/10;
+  .frosted-bg {
+    background: rgba(20, 20, 22, 0.55);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
   }
 }

@@ -1,9 +1,16 @@
 import type { Metadata, Viewport } from 'next'
+import { Inter } from 'next/font/google'
 import { ThemeProvider } from '@/components/theme-provider'
 import './globals.css'
 
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+})
+
 export const metadata: Metadata = {
-  title: 'CodeBucks - Full-Stack AI Engineer',
+  title: 'Dev - Full-Stack AI Engineer',
   description: 'Modern software, built to think, shipped end-to-end. Designing and building AI-native products.',
   generator: 'v0.app',
 }
@@ -22,8 +29,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className="bg-background text-foreground antialiased">
+    <html lang="en" className={`scroll-smooth ${inter.variable}`}>
+      <body className="bg-background text-foreground antialiased font-sans">
         <ThemeProvider>
           {children}
         </ThemeProvider>
