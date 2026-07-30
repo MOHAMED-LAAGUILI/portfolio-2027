@@ -1,6 +1,7 @@
-import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
+import { koFi } from "@/data/links";
+import { metadata, viewport } from "@/data/seo";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 
@@ -10,20 +11,7 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-export const metadata: Metadata = {
-  description:
-    "Modern software, built to think, shipped end-to-end. Designing and building AI-native products.",
-  generator: "v0.app",
-  title: "Dev - Full-Stack AI Engineer",
-};
-
-export const viewport: Viewport = {
-  colorScheme: "light dark",
-  themeColor: [
-    { color: "#fafaf9", media: "(prefers-color-scheme: light)" },
-    { color: "#1c1917", media: "(prefers-color-scheme: dark)" },
-  ],
-};
+export { metadata, viewport };
 
 export default function RootLayout({
   children,
@@ -44,11 +32,11 @@ export default function RootLayout({
         <script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script>
         <script>
           {`
-  kofiWidgetOverlay.draw('mohamedlaaguili', {
-    'type': 'floating-chat',
-    'floating-chat.donateButton.text': 'Support me',
-    'floating-chat.donateButton.background-color': '#f45d22',
-    'floating-chat.donateButton.text-color': '#fff'
+     kofiWidgetOverlay.draw('${koFi.user}', {
+    'type': '${koFi.type}',
+    'floating-chat.donateButton.text': '${koFi.donateButton.text}',
+    'floating-chat.donateButton.background-color': '${koFi.donateButton.backgroundColor}',
+    'floating-chat.donateButton.text-color': '${koFi.donateButton.textColor}'
   });
   `}
         </script>
